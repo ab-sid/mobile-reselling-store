@@ -1,0 +1,26 @@
+[
+    {
+        "name": "IPhone",
+        "image": "https://1734811051.rsc.cdn77.org/data/images/full/405264/apples-iphone-14-lineup-might-arrive-this-september-along-with-three-new-smartwatches.jpg"
+    },
+    {
+        "name": "Samsung",
+        "image": "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8c2Ftc3VuZyUyMHBob25lfGVufDB8fDB8fA%3D%3D&w=1000&q=80"
+    },
+    {
+        "name": "Sony",
+        "image": "https://whatmobile24.com/wp-content/uploads/2021/04/Sony-Xperia-L5-5G-2021.jpg"
+    },
+    {
+        "name": "OnePlus",
+        "image": "https://www.financialexpress.com/wp-content/uploads/2022/01/oneplus-main.png"
+    },
+    {
+        "name": "Xiomi",
+        "image": "https://xiaomiui.net/wp-content/uploads/2022/03/Popular-Xiaomi-Phones.jpg"
+    },
+    {
+        "name": "Realme",
+        "image": "https://www.dailyexcelsior.com/wp-content/uploads/2021/07/Realme_1260x960.jpg"
+    }
+]
