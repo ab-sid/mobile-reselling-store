@@ -20,7 +20,7 @@ const Brand = () => {
         const phone = form.phone.value;
         const description = form.description.value;
 
-        const addProduct = {
+        const product = {
             productCat: _id,
             productName,
             image,
@@ -35,6 +35,21 @@ const Brand = () => {
             phone,
             description
         }
+        fetch('http://localhost:5000/addPhone', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(product)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                if (data.acknowledged) {
+                    alert('Product add successfully')
+                    form.reset();
+                }
+            })
     }
 
     return (
