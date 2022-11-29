@@ -1,11 +1,26 @@
+import { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../contexts/AuthProvider';
 
 const Login = () => {
     const { register, formState: { error }, handleSubmit } = useForm();
+    const { signIn } = useContext(AuthContext);
+    const [loginError, setLoginError] = useState('');
     const handleLogin = data => {
         console.log(data);
+        setLoginError('');
+        signIn(data.email, data.password)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+            })
+            .catch(error => {
+                console.log(error.message)
+                setLoginError(error.message)
+            })
     }
+
     return (
         <div className='flex justify-center items-center'>
             <div>
@@ -30,6 +45,9 @@ const Login = () => {
                     </div>
 
                     <input className='btn btn-accent w-full' value='Login' type="submit" />
+                    {
+                        loginError && <p className='color-red-600'>{loginError}</p>
+                    }
                 </form>
                 <p>New to Mobile Reselling Store? <Link className='text-primary' to='/signup'>Sign Up</Link></p>
                 <div className="divider">OR</div>
