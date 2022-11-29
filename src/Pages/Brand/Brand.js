@@ -35,7 +35,7 @@ const Brand = () => {
             phone,
             description
         }
-        fetch('http://localhost:5000/addPhone', {
+        fetch('http://localhost:5000/phones', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
