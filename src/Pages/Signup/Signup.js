@@ -1,14 +1,24 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
+import useToken from '../hooks/useToken';
 
 const Signup = () => {
     const { register, formState: { error }, handleSubmit } = useForm();
     const { createUser, updateUser } = useContext(AuthContext);
+    const [createdUserEmail, setCreatedUserEmail] = useState('')
+    const [token] = useToken(createdUserEmail)
+    const navigate = useNavigate();
+
+    if (token) {
+        navigate('/');
+    }
     const handleSignup = data => {
         console.log(data);
+        const cat = data.category;
+        console.log(cat);
         createUser(data.email, data.password)
             .then(result => {
                 const user = result.user;
@@ -18,11 +28,32 @@ const Signup = () => {
                     displayName: data.name
                 }
                 updateUser(userInfo)
-                    .then(() => { })
-                    .catch(err => console.log(err))
+                    .then(() => {
+                        saveUser(data.name, data.email, cat);
+                    })
+
             })
             .catch(error => console.log(error))
     }
+
+    const saveUser = (name, email, category) => {
+        const user = { name, email, category };
+        fetch('http://localhost:5000/users', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+            .then(res => res.json())
+            .then(data => {
+                setCreatedUserEmail(email);
+
+            })
+    }
+
+
+
     return (
         <div className='flex justify-center items-center'>
             <div>
@@ -49,8 +80,8 @@ const Signup = () => {
                     </div>
                     <select {...register("category", { required: true })} className="input input-bordered w-full max-w-xs">
                         <option disabled selected>Select Users</option>
-                        <option value='user'>User</option>
                         <option value='seller'>Seller</option>
+                        <option value='buyer'>Buyer</option>
                     </select>
 
                     <input className='btn btn-accent w-full' value='SignUp' type="submit" />
