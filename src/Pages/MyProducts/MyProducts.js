@@ -14,7 +14,7 @@ const MyProducts = () => {
     return (
         <div>
             <h1>My Products</h1>
-            <h3>hhhhhh{myPhones.length}</h3>
+            <h3>Total Products: {myPhones.length}</h3>
             <div>
                 {
                     myPhones.map(myPhn => <MyProductsCard key={myPhn._id} myPhn={myPhn}></MyProductsCard>)
