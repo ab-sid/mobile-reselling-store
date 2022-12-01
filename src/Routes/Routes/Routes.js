@@ -3,6 +3,7 @@ import DashboardLayout from "../../Layout/DashboardLayout";
 import Main from "../../Layout/Main";
 import AllBuyer from "../../Pages/AllBuyer/AllBuyer";
 import AllSeller from "../../Pages/AllSeller/AllSeller";
+import Blog from "../../Pages/Blog/Blog";
 import Brand from "../../Pages/Brand/Brand";
 import Dashboard from "../../Pages/Dashboard/Dashboard";
 import Home from "../../Pages/Home/Home/Home";
@@ -40,8 +41,8 @@ export const router = createBrowserRouter([
                 loader: ({ params }) => fetch(`http://localhost:5000/mobileBrands/${params.id}`)
             },
             {
-                path: '/myProducts',
-                element: <MyProducts></MyProducts>
+                path: '/blog',
+                element: <Blog></Blog>
             }
         ]
     },
