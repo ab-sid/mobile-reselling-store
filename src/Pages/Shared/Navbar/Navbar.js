@@ -16,7 +16,7 @@ const Navbar = () => {
         {user?.uid ?
             <>
                 <li><Link to='/dashboard'>Dashboard</Link></li>
-                <li><button onClick={handleLogOut}>SignOut</button></li>
+                <li><button onClick={handleLogOut}>LogOut</button></li>
             </>
             :
             <>

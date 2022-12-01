@@ -18,7 +18,7 @@ const AllBuyer = () => {
                             <th>Name</th>
                             <th>Email</th>
                             <th>Category</th>
-                            <th>Delete</th>
+
                         </tr>
                     </thead>
                     <tbody>
@@ -28,7 +28,7 @@ const AllBuyer = () => {
                                 <td>{buyer.name}</td>
                                 <td>{buyer.email}</td>
                                 <td>{buyer.category}</td>
-                                <td><button className='btn btn-xs btn-danger'>Delete</button></td>
+
                             </tr>)
                         }
                     </tbody>
