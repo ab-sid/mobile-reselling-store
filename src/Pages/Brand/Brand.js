@@ -1,8 +1,20 @@
-import React from 'react';
-import { useLoaderData } from 'react-router-dom';
+import React, { useContext, useEffect, useState } from 'react';
+import { useLoaderData, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../contexts/AuthProvider';
+import BrandPhone from '../BrandPhone/BrandPhone';
+import useSeller from '../hooks/useSeller';
 
 const Brand = () => {
     const { _id } = useLoaderData()
+    const { user } = useContext(AuthContext);
+    const [isSeller] = useSeller(user?.email);
+    const [phones, setPhones] = useState([]);
+    const navigate = useNavigate();
+    useEffect(() => {
+        fetch(`http://localhost:5000/phones?productCat=${_id}`)
+            .then(res => res.json())
+            .then(data => setPhones(data))
+    }, [])
 
     const handleAddProducts = event => {
         event.preventDefault();
@@ -48,12 +60,19 @@ const Brand = () => {
                 if (data.acknowledged) {
                     alert('Product add successfully')
                     form.reset();
+                    navigate('/myproducts');
                 }
             })
     }
 
     return (
         <div className='mx-6'>
+            <h1 className='text-center text-3xl font-bold mb-6'>All Products</h1>
+            <div className='grid  gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
+                {
+                    phones.map(phn => <BrandPhone key={phn._id} phn={phn}></BrandPhone>)
+                }
+            </div>
             <h1 className='text-center text-3xl font-bold mb-6'>Add Your Products</h1>
             <form onSubmit={handleAddProducts}>
                 <div className='grid grid-cols-1 lg:grid-cols-2 gap-4'>
@@ -65,12 +84,16 @@ const Brand = () => {
                     <input type="text" name='useTime' placeholder="Type year of use" className="input input-bordered" />
                     <input type="date" name='postDate' placeholder="Type post date" className="input input-bordered" />
                     <input type="text" name='sellerName' placeholder="Type your name" className="input input-bordered" />
-                    <input type="email" name='sellerEmail' placeholder="Type your email" className="input input-bordered" />
+                    <input type="email" name='sellerEmail' value={user?.email} className="input input-bordered" disabled />
                     <input type="text" name='conType' placeholder="Type your product condition" className="input input-bordered" />
                     <input type="text" name='phone' placeholder="Type your phone number" className="input input-bordered" />
                     <textarea className="textarea textarea-bordered" name='description' placeholder="Type product description"></textarea>
                 </div>
-                <input className='btn btn-success my-3 text-white' type="submit" value="Add Product" />
+                {
+                    isSeller &&
+                    <input className='btn btn-success my-3 text-white' type="submit" value="Add Product" />
+
+                }
             </form>
         </div>
     );

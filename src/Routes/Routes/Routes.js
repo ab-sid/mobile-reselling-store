@@ -9,6 +9,7 @@ import Home from "../../Pages/Home/Home/Home";
 import Login from "../../Pages/Login/Login";
 import MyOrders from "../../Pages/MyOrders/MyOrders";
 import MyProducts from "../../Pages/MyProducts/MyProducts";
+import NotFound from "../../Pages/NotFound/NotFound";
 import Signup from "../../Pages/Signup/Signup";
 import Users from "../../Pages/Users/Users";
 import AdminRoute from "../AdminRoute/AdminRoute";
@@ -73,5 +74,9 @@ export const router = createBrowserRouter([
                 element: <BuyerRoute><MyOrders></MyOrders></BuyerRoute>
             }
         ]
+    },
+    {
+        path: '*',
+        element: <NotFound></NotFound>
     }
 ])
