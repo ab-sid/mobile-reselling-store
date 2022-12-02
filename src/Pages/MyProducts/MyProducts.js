@@ -4,7 +4,7 @@ import MyProductsCard from './MyProductsCard';
 
 const MyProducts = () => {
     const { user } = useContext(AuthContext);
-    const url = `http://localhost:5000/myphones?email=${user?.email}`;
+    const url = `https://mobile-reselling-store-server.vercel.app/myphones?email=${user?.email}`;
     const [myPhones, setMyPhones] = useState([]);
     useEffect(() => {
         fetch(url)

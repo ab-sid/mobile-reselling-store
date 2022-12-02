@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 const AllBuyer = () => {
     const [buyers, setBuyers] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:5000/buyer')
+        fetch('https://mobile-reselling-store-server.vercel.app/buyer')
             .then(res => res.json())
             .then(data => setBuyers(data))
     }, [])

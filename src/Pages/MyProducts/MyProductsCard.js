@@ -12,7 +12,7 @@ const MyProductsCard = ({ myPhn }) => {
     }
     const handleDeleteProduct = product => {
 
-        fetch(`http://localhost:5000/products/${product._id}`, {
+        fetch(`https://mobile-reselling-store-server.vercel.app/products/${product._id}`, {
             method: 'DELETE',
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`

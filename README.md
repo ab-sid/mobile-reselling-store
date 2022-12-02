@@ -1,4 +1,4 @@
-# Live Site Link: https://assignment-11-c966f.web.app/
+# Live Site Link: https://mobile-reselling-store.web.app
 # Its a mobile reselling store Website for buying phones
 # In This Site You can order or book Phone for youself
 # You can also create seller account for buying your phones

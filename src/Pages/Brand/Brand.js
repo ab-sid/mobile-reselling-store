@@ -14,7 +14,7 @@ const Brand = () => {
     const [order, setOrder] = useState(null);
     const navigate = useNavigate();
     useEffect(() => {
-        fetch(`http://localhost:5000/phones?productCat=${_id}`)
+        fetch(`https://mobile-reselling-store-server.vercel.app/phones?productCat=${_id}`)
             .then(res => res.json())
             .then(data => setPhones(data))
     }, [])
@@ -50,7 +50,7 @@ const Brand = () => {
             phone,
             description
         }
-        fetch('http://localhost:5000/phones', {
+        fetch('https://mobile-reselling-store-server.vercel.app/phones', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

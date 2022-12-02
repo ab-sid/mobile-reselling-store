@@ -10,7 +10,7 @@ const Users = () => {
     }
     const handleDeleteUser = user => {
         console.log(user);
-        fetch(`http://localhost:5000/users/${user._id}`, {
+        fetch(`https://mobile-reselling-store-server.vercel.app/users/${user._id}`, {
             method: 'DELETE',
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -24,12 +24,12 @@ const Users = () => {
             })
     }
     useEffect(() => {
-        fetch('http://localhost:5000/users')
+        fetch('https://mobile-reselling-store-server.vercel.app/users')
             .then(res => res.json())
             .then(data => setUsers(data))
     }, [])
     const handleMakeAdmin = (id) => {
-        fetch(`http://localhost:5000/users/admin/${id}`, {
+        fetch(`https://mobile-reselling-store-server.vercel.app/users/admin/${id}`, {
             method: 'PUT',
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`

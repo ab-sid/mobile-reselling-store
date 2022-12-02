@@ -6,7 +6,7 @@ const MyOrders = () => {
     const { user } = useContext(AuthContext);
     const [orders, setMyOrders] = useState([])
     useEffect(() => {
-        fetch(`http://localhost:5000/bookings?email=${user?.email}`)
+        fetch(`https://mobile-reselling-store-server.vercel.app/bookings?email=${user?.email}`)
             .then(res => res.json())
             .then(data => setMyOrders(data))
     }, [])

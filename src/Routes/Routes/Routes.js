@@ -38,7 +38,7 @@ export const router = createBrowserRouter([
             {
                 path: '/brand/:id',
                 element: <Brand></Brand>,
-                loader: ({ params }) => fetch(`http://localhost:5000/mobileBrands/${params.id}`)
+                loader: ({ params }) => fetch(`https://mobile-reselling-store-server.vercel.app/mobileBrands/${params.id}`)
             },
             {
                 path: '/blog',

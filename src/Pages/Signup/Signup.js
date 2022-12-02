@@ -37,7 +37,7 @@ const Signup = () => {
 
     const saveUser = (name, email, category) => {
         const user = { name, email, category };
-        fetch('http://localhost:5000/users', {
+        fetch('https://mobile-reselling-store-server.vercel.app/users', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

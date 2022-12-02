@@ -3,13 +3,13 @@ import React, { useEffect, useState } from 'react';
 const AllSeller = () => {
     const [sellers, setSellers] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:5000/seller')
+        fetch('https://mobile-reselling-store-server.vercel.app/seller')
             .then(res => res.json())
             .then(data => setSellers(data))
     }, [])
 
     const handleMakeAdmin = (id) => {
-        fetch(`http://localhost:5000/users/admin/${id}`, {
+        fetch(`https://mobile-reselling-store-server.vercel.app/users/admin/${id}`, {
             method: 'PUT'
         })
             .then(res => res.json())
