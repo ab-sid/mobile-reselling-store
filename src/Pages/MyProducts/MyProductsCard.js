@@ -1,9 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
+import toast from 'react-hot-toast';
+import ConfirmationModal from '../Shared/ConfirmationModal/ConfirmationModal';
 
 const MyProductsCard = ({ myPhn }) => {
+    const [deletingProduct, setDeletingProduct] = useState(null)
     console.log(myPhn);
-    const { image, conType, description, location, originalPrice, phone, postDate, productName, reselPrice, sellerName, useTime
+    const { image, conType, originalPrice, phone, postDate, productName, reselPrice, sellerName, useTime
     } = myPhn;
+    const closeModal = () => {
+        setDeletingProduct(null)
+    }
+    const handleDeleteProduct = product => {
+
+        fetch(`http://localhost:5000/products/${product._id}`, {
+            method: 'DELETE',
+            headers: {
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.deletedCount > 0) {
+                    toast.success(`Product deleted successfully`)
+                }
+            })
+    }
     return (
         <div className="card bg-base-100 shadow-xl">
             <figure><img src={image} alt="Shoes" /></figure>
@@ -15,17 +36,31 @@ const MyProductsCard = ({ myPhn }) => {
                 <p>Original Price: {originalPrice}</p>
                 <p>Resel Price: {reselPrice}</p>
                 <p>Phone Used: {useTime} years</p>
+                <p>Phone: {phone}</p>
 
-                <div className="card-actions justify-end">
-                    <div className="badge badge-outline">{phone}</div>
+
+                <div className="card-actions justify-end mb-6">
+                    <div className="badge badge-outline">available</div>
                     <div className="badge badge-outline">{postDate}</div>
                 </div>
                 <div className="card-actions justify-between">
-                    <button className="btn btn-primary">Unsold</button>
-                    <button className="btn btn-primary">Delete</button>
+                    <button className="btn btn-sm btn-primary">Unsold</button>
+                    <label onClick={() => setDeletingProduct(myPhn)} htmlFor="confirmation-modal" className="btn btn-sm btn-primary">Delete</label>
                 </div>
-
             </div>
+            {
+                deletingProduct && <ConfirmationModal
+                    title={`Are you sure you want to delete?`}
+                    message={`If you delete ${deletingProduct.productName}. It can't be undone`}
+
+                    successButtonName="Delete"
+                    modalData={deletingProduct}
+                    successAction={handleDeleteProduct}
+                    closeModal={closeModal}
+                >
+
+                </ConfirmationModal>
+            }
         </div>
     );
 };

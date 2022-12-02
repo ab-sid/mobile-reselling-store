@@ -1,3 +1,13 @@
+# Live Site Link: https://assignment-11-c966f.web.app/
+# Its a mobile reselling store Website for buying phones
+# In This Site You can order or book Phone for youself
+# You can also create seller account for buying your phones
+# You can delete your phone after added any product
+# In this site admin panel dashboad has been implement
+# seller and buyer route also implement
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

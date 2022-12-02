@@ -55,7 +55,6 @@ const Users = () => {
                             <th>Name</th>
                             <th>Email</th>
                             <th>Category</th>
-                            <th>Admin</th>
                             <th>Delete</th>
                         </tr>
                     </thead>
@@ -66,8 +65,8 @@ const Users = () => {
                                 <td>{user.name}</td>
                                 <td>{user.email}</td>
                                 <td>{user.category}</td>
-                                <td>{user?.category !== 'admin' && <button onClick={() => handleMakeAdmin(user._id)} className='btn btn-xs btn-primary'>Make Admin</button>}</td>
-                                <label onClick={() => setDeletingUser(user)} htmlFor="confirmation-modal" className="btn btn-xs btn-danger">Delete</label>
+                                {/* <td>{user?.category !== 'admin' && <button onClick={() => handleMakeAdmin(user._id)} className='btn btn-xs btn-primary'>Make Admin</button>}</td> */}
+                                <td><label onClick={() => setDeletingUser(user)} htmlFor="confirmation-modal" className="btn btn-xs btn-danger">Delete</label></td>
 
                             </tr>)
                         }

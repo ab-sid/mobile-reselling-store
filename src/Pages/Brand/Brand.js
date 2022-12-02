@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 import { Link, useLoaderData, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
 import BookingModal from '../BookingModal/BookingModal';
@@ -60,16 +61,16 @@ const Brand = () => {
             .then(data => {
                 console.log(data)
                 if (data.acknowledged) {
-                    alert('Product add successfully')
+                    toast.success('Product added successfully')
                     form.reset();
-                    navigate('/myproducts');
+                    navigate('/dashboard/myproducts');
                 }
             })
     }
 
     return (
-        <div className='mx-6 mb-12'>
-            <h1 className='text-center text-3xl font-bold mb-6'>All Products</h1>
+        <div className='mx-6 my-12'>
+
             <div className='grid  gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
                 {
                     phones.map(phn => <BrandPhone key={phn._id} phn={phn} setOrder={setOrder}></BrandPhone>)

@@ -13,10 +13,10 @@ const Signup = () => {
     const navigate = useNavigate();
 
     if (token) {
-        navigate('/');
+        navigate('/login');
     }
     const handleSignup = data => {
-        const cat = data.category;
+
         createUser(data.email, data.password)
             .then(result => {
                 const user = result.user;
@@ -27,7 +27,8 @@ const Signup = () => {
                 }
                 updateUser(userInfo)
                     .then(() => {
-                        saveUser(data.name, data.email, cat);
+                        console.log(userInfo);
+                        saveUser(data.name, data.email, data.category);
                     })
 
             })
@@ -46,14 +47,12 @@ const Signup = () => {
             .then(res => res.json())
             .then(data => {
                 setCreatedUserEmail(email);
-
             })
     }
 
 
-
     return (
-        <div className='flex justify-center items-center'>
+        <div className='flex justify-center items-center mb-12'>
             <div>
                 <h2 className='text-3xl text-center font-bold mb-6'>SignUp</h2>
                 <form onSubmit={handleSubmit(handleSignup)}>
@@ -76,7 +75,7 @@ const Signup = () => {
                         </label>
                         <input type="password" {...register("password")} className="input input-bordered w-full max-w-xs" />
                     </div>
-                    <select {...register("category", { required: true })} className="input input-bordered w-full max-w-xs">
+                    <select {...register("category", { required: true })} className="input input-bordered w-full max-w-xs my-4">
                         <option disabled selected>Select Users</option>
                         <option value='seller'>Seller</option>
                         <option value='buyer'>Buyer</option>

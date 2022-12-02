@@ -14,8 +14,8 @@ const MyProducts = () => {
     return (
         <div className='mx-6'>
             {console.log(myPhones)}
-            <h1>My Products</h1>
-            <h3>Total Products: {myPhones.length}</h3>
+            <h1 className='text-3xl font-bold text-center mb-12'>My Products</h1>
+            <h3 className='text-xl mb-8'>Total Products: {myPhones.length}</h3>
             <div className='grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
                 {
                     myPhones.map(myPhn => <MyProductsCard key={myPhn._id} myPhn={myPhn}></MyProductsCard>)

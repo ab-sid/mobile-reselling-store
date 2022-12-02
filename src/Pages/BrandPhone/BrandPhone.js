@@ -21,7 +21,7 @@ const BrandPhone = ({ phn, setOrder }) => {
                     <div className="badge badge-outline">{postDate}</div>
                 </div>
                 <div className="card-actions justify-end">
-                    <label onClick={() => setOrder(phn)} htmlFor="booking-modal" className="btn btn-primary">Book Now</label>
+                    <label onClick={() => setOrder(phn)} htmlFor="booking-modal" className="btn btn-primary mt-4">Book Now</label>
                 </div>
             </div>
         </div>
