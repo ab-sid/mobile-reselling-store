@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { useLoaderData, useNavigate } from 'react-router-dom';
+import { Link, useLoaderData, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
+import BookingModal from '../BookingModal/BookingModal';
 import BrandPhone from '../BrandPhone/BrandPhone';
 import useSeller from '../hooks/useSeller';
 
@@ -9,6 +10,7 @@ const Brand = () => {
     const { user } = useContext(AuthContext);
     const [isSeller] = useSeller(user?.email);
     const [phones, setPhones] = useState([]);
+    const [order, setOrder] = useState(null);
     const navigate = useNavigate();
     useEffect(() => {
         fetch(`http://localhost:5000/phones?productCat=${_id}`)
@@ -66,14 +68,18 @@ const Brand = () => {
     }
 
     return (
-        <div className='mx-6'>
+        <div className='mx-6 mb-12'>
             <h1 className='text-center text-3xl font-bold mb-6'>All Products</h1>
             <div className='grid  gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
                 {
-                    phones.map(phn => <BrandPhone key={phn._id} phn={phn}></BrandPhone>)
+                    phones.map(phn => <BrandPhone key={phn._id} phn={phn} setOrder={setOrder}></BrandPhone>)
                 }
             </div>
-            <h1 className='text-center text-3xl font-bold mb-6'>Add Your Products</h1>
+            {
+                order &&
+                <BookingModal order={order} setOrder={setOrder}></BookingModal>
+            }
+            <h1 className='text-center text-3xl font-bold my-16'>Add Your Products</h1>
             <form onSubmit={handleAddProducts}>
                 <div className='grid grid-cols-1 lg:grid-cols-2 gap-4'>
                     <input type="text" name='productName' placeholder="Type product name" className="input input-bordered" />
@@ -92,7 +98,10 @@ const Brand = () => {
                 {
                     isSeller &&
                     <input className='btn btn-success my-3 text-white' type="submit" value="Add Product" />
-
+                }
+                {
+                    !isSeller &&
+                    <p className='text-success'>Your Accout must be a seller type account for adding any product!!</p>
                 }
             </form>
         </div>

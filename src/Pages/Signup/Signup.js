@@ -16,9 +16,7 @@ const Signup = () => {
         navigate('/');
     }
     const handleSignup = data => {
-        console.log(data);
         const cat = data.category;
-        console.log(cat);
         createUser(data.email, data.password)
             .then(result => {
                 const user = result.user;

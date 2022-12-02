@@ -1,7 +1,7 @@
 import React from 'react';
 
-const BrandPhone = ({ phn }) => {
-    const { image, conType, description, location, originalPrice, phone, postDate, productName, reselPrice, sellerName, useTime } = phn;
+const BrandPhone = ({ phn, setOrder }) => {
+    const { image, conType, location, originalPrice, phone, postDate, productName, reselPrice, sellerName, useTime } = phn;
     return (
         <div className="card w-96 bg-base-100 shadow-xl">
             <figure><img src={image} alt="Shoes" /></figure>
@@ -21,7 +21,7 @@ const BrandPhone = ({ phn }) => {
                     <div className="badge badge-outline">{postDate}</div>
                 </div>
                 <div className="card-actions justify-end">
-                    <button className="btn btn-primary">Book Now</button>
+                    <label onClick={() => setOrder(phn)} htmlFor="booking-modal" className="btn btn-primary">Book Now</label>
                 </div>
             </div>
         </div>
