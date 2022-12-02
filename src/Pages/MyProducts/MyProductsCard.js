@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import toast from 'react-hot-toast';
 import ConfirmationModal from '../Shared/ConfirmationModal/ConfirmationModal';
 
-const MyProductsCard = ({ myPhn }) => {
+const MyProductsCard = ({ myPhn, handleDeleteProduct }) => {
     const [deletingProduct, setDeletingProduct] = useState(null)
     console.log(myPhn);
     const { image, conType, originalPrice, phone, postDate, productName, reselPrice, sellerName, useTime
@@ -10,21 +10,7 @@ const MyProductsCard = ({ myPhn }) => {
     const closeModal = () => {
         setDeletingProduct(null)
     }
-    const handleDeleteProduct = product => {
 
-        fetch(`https://mobile-reselling-store-server.vercel.app/products/${product._id}`, {
-            method: 'DELETE',
-            headers: {
-                authorization: `bearer ${localStorage.getItem('accessToken')}`
-            }
-        })
-            .then(res => res.json())
-            .then(data => {
-                if (data.deletedCount > 0) {
-                    toast.success(`Product deleted successfully`)
-                }
-            })
-    }
     return (
         <div className="card bg-base-100 shadow-xl">
             <figure><img src={image} alt="Shoes" /></figure>

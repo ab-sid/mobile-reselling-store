@@ -19,7 +19,9 @@ const Users = () => {
             .then(res => res.json())
             .then(data => {
                 if (data.deletedCount > 0) {
-                    toast.success(`User ${user.name} deleted successfully`)
+                    toast.success(`User ${user.name} deleted successfully`);
+                    const remaing = users.filter(usr => usr._id !== user._id);
+                    setUsers(remaing);
                 }
             })
     }
@@ -28,22 +30,7 @@ const Users = () => {
             .then(res => res.json())
             .then(data => setUsers(data))
     }, [])
-    const handleMakeAdmin = (id) => {
-        fetch(`https://mobile-reselling-store-server.vercel.app/users/admin/${id}`, {
-            method: 'PUT',
-            headers: {
-                authorization: `bearer ${localStorage.getItem('accessToken')}`
-            }
-        })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data);
-                if (data.modifiedCount > 0) {
-                    toast.success('Make Admin Successfully')
-                }
-            })
 
-    }
     return (
         <div>
             <h1>Total Users: {users.length}</h1>
